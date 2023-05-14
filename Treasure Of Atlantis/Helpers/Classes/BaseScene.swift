@@ -39,17 +39,17 @@ class BaseScene: SKScene {
         addChild(background)
     }
     
-    func setupTopAndBotUI(with score: Int, and avatar: String) {
+    func setupTopAndBotUI() {
         let middleLabel = SKSpriteNode(imageNamed: Resources.Elements.score)
         middleLabel.position = CGPoint(x: frame.midX, y: frame.maxY - 80)
         addChild(middleLabel)
         
-        let avatar = SKSpriteNode(imageNamed: avatar)
+        let avatar = SKSpriteNode(imageNamed: gameController.avatar)
         avatar.position = CGPoint(x: middleLabel.frame.midX - 75, y: middleLabel.frame.midY)
         avatar.zPosition = 1
         addChild(avatar)
         
-        scoreAmount = SKLabelNode(text: "SCORE: " + formatAmount(String(score)))
+        scoreAmount = SKLabelNode(text: "SCORE: " + formatAmount(String(gameController.scoreAmount)))
         scoreAmount.fontName = Resources.Fonts.EvilEmpire_Regular
         scoreAmount.horizontalAlignmentMode = .center
         scoreAmount.fontSize = 25

@@ -23,6 +23,8 @@ class ChoosingLevelScene: BaseScene {
                     case Resources.Buttons.right,
                         Resources.Buttons.questionMark:
                         gameController.questionMarkButtonPressed()
+                    case Resources.Buttons.policy:
+                        gameController.policyButtonPressed()
                     case Resources.Buttons.miniStartButton + "1":
                         gameController.startGameButtonPressed(level: 1)
                     case Resources.Buttons.miniStartButton + "2":
@@ -33,8 +35,6 @@ class ChoosingLevelScene: BaseScene {
                         gameController.startGameButtonPressed(level: 4)
                     case Resources.Buttons.miniStartButton + "5":
                         gameController.startGameButtonPressed(level: 5)
-                    case Resources.Buttons.policy:
-                        gameController.policyButtonPressed()
                     default: break
                 }
             }
@@ -46,7 +46,7 @@ class ChoosingLevelScene: BaseScene {
 //        remove()
         
         setBackground(with: Resources.Backgrounds.choosingLevel)
-        setupTopAndBotUI(with: gameController.scoreAmount, and: gameController.avatar)
+        setupTopAndBotUI()
         setupBackAndQuestionMarkButtons()
         
         let firstLevel = SKSpriteNode(imageNamed: Resources.Elements.firstLevel)

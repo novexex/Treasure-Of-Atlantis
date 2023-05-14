@@ -32,7 +32,7 @@ class MenuScene: BaseScene {
         super.setupUI()
         
         setBackground(with: Resources.Backgrounds.menu)
-        setupTopAndBotUI(with: gameController.scoreAmount, and: gameController.avatar)
+        setupTopAndBotUI()
         
         let storeButton = SKSpriteNode(imageNamed: Resources.Buttons.store)
         storeButton.name = Resources.Buttons.store

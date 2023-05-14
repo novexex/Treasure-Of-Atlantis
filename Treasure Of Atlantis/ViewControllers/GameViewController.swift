@@ -20,6 +20,9 @@ class GameViewController: UIViewController {
     private lazy var splashScene = SplashScene(size: view.bounds.size, gameController: self)
     private lazy var menuScene = MenuScene(size: view.bounds.size, gameController: self)
     private lazy var choosingLevelScene = ChoosingLevelScene(size: view.bounds.size, gameController: self)
+    private lazy var lotteryScene = LotteryScene(size: view.bounds.size, gameController: self)
+    private lazy var achivementsScene = AchivementsScene(size: view.bounds.size, gameController: self)
+    private lazy var storeScene = StoreScene(size: view.bounds.size, gameController: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +53,7 @@ class GameViewController: UIViewController {
     }
     
     func lotteryButtonPressed() {
-        
+        presentBaseScene(lotteryScene)
     }
     
     func policyButtonPressed() {
@@ -58,11 +61,11 @@ class GameViewController: UIViewController {
     }
     
     func achivementsButtonPressed() {
-        
+        presentBaseScene(achivementsScene)
     }
     
     func storeButtonPressed() {
-        
+        presentBaseScene(storeScene)
     }
     
     func presentMenu() {

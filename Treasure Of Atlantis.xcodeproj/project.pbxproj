@@ -19,7 +19,7 @@
 		EB91D09C2A108F76003DA117 /* AchivementsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91D09B2A108F76003DA117 /* AchivementsScene.swift */; };
 		EB91D09E2A108F7D003DA117 /* LoseScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91D09D2A108F7D003DA117 /* LoseScene.swift */; };
 		EB91D0A02A108F84003DA117 /* WinScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91D09F2A108F84003DA117 /* WinScene.swift */; };
-		EB91D0A22A108F9E003DA117 /* LoteryScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91D0A12A108F9E003DA117 /* LoteryScene.swift */; };
+		EB91D0A22A108F9E003DA117 /* LotteryScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91D0A12A108F9E003DA117 /* LotteryScene.swift */; };
 		EB91D0A52A1090D9003DA117 /* Evil-Empire.otf in Resources */ = {isa = PBXBuildFile; fileRef = EB91D0A42A1090D9003DA117 /* Evil-Empire.otf */; };
 		EB91D0A82A1096B0003DA117 /* GameSetups.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91D0A72A1096B0003DA117 /* GameSetups.swift */; };
 		EB91D0AC2A10AC53003DA117 /* ChoosingLevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91D0AB2A10AC53003DA117 /* ChoosingLevelScene.swift */; };
@@ -39,7 +39,7 @@
 		EB91D09B2A108F76003DA117 /* AchivementsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchivementsScene.swift; sourceTree = "<group>"; };
 		EB91D09D2A108F7D003DA117 /* LoseScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseScene.swift; sourceTree = "<group>"; };
 		EB91D09F2A108F84003DA117 /* WinScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinScene.swift; sourceTree = "<group>"; };
-		EB91D0A12A108F9E003DA117 /* LoteryScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoteryScene.swift; sourceTree = "<group>"; };
+		EB91D0A12A108F9E003DA117 /* LotteryScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotteryScene.swift; sourceTree = "<group>"; };
 		EB91D0A42A1090D9003DA117 /* Evil-Empire.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Evil-Empire.otf"; sourceTree = "<group>"; };
 		EB91D0A62A1090EE003DA117 /* Treasure-Of-Atlantis-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Treasure-Of-Atlantis-Info.plist"; path = "Treasure Of Atlantis/Resources/Treasure-Of-Atlantis-Info.plist"; sourceTree = SOURCE_ROOT; };
 		EB91D0A72A1096B0003DA117 /* GameSetups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSetups.swift; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 				EB91D09B2A108F76003DA117 /* AchivementsScene.swift */,
 				EB91D09D2A108F7D003DA117 /* LoseScene.swift */,
 				EB91D09F2A108F84003DA117 /* WinScene.swift */,
-				EB91D0A12A108F9E003DA117 /* LoteryScene.swift */,
+				EB91D0A12A108F9E003DA117 /* LotteryScene.swift */,
 				EB91D0AB2A10AC53003DA117 /* ChoosingLevelScene.swift */,
 			);
 			path = Scenes;
@@ -230,7 +230,7 @@
 				EB91D0A02A108F84003DA117 /* WinScene.swift in Sources */,
 				EB91D0802A1073E5003DA117 /* GameViewController.swift in Sources */,
 				EB91D09A2A108F61003DA117 /* StoreScene.swift in Sources */,
-				EB91D0A22A108F9E003DA117 /* LoteryScene.swift in Sources */,
+				EB91D0A22A108F9E003DA117 /* LotteryScene.swift in Sources */,
 				EB91D0782A1073E4003DA117 /* AppDelegate.swift in Sources */,
 				EB91D0962A107562003DA117 /* Enums.swift in Sources */,
 				EB91D0942A1074AA003DA117 /* BaseScene.swift in Sources */,
