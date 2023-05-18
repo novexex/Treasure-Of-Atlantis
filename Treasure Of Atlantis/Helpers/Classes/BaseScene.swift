@@ -10,9 +10,12 @@ import SpriteKit
 class BaseScene: SKScene {
     weak var gameController: GameViewController!
     
-    var leftButton = SKSpriteNode()
-    var rightButton = SKSpriteNode()
     var scoreAmount = SKLabelNode()
+    var avatar = SKSpriteNode()
+    
+    private var leftButton = SKSpriteNode()
+    private var rightButton = SKSpriteNode()
+    private var middleLabel = SKSpriteNode()
     
     init(size: CGSize, gameController: GameViewController) {
         self.gameController = gameController
@@ -40,11 +43,11 @@ class BaseScene: SKScene {
     }
     
     func setupTopAndBotUI() {
-        let middleLabel = SKSpriteNode(imageNamed: Resources.Elements.score)
+        middleLabel = SKSpriteNode(imageNamed: Resources.Elements.score)
         middleLabel.position = CGPoint(x: frame.midX, y: frame.maxY - 80)
         addChild(middleLabel)
         
-        let avatar = SKSpriteNode(imageNamed: gameController.avatar)
+        avatar = SKSpriteNode(imageNamed: gameController.avatar)
         avatar.position = CGPoint(x: middleLabel.frame.midX - 75, y: middleLabel.frame.midY)
         avatar.zPosition = 1
         addChild(avatar)
@@ -57,29 +60,38 @@ class BaseScene: SKScene {
         scoreAmount.zPosition = 1
         addChild(scoreAmount)
         
-        leftButton = SKSpriteNode(imageNamed: Resources.Buttons.left)
-        leftButton.name = Resources.Buttons.left
-        leftButton.position = CGPoint(x: middleLabel.frame.minX - 35, y: middleLabel.frame.midY)
-        addChild(leftButton)
-        
-        rightButton = SKSpriteNode(imageNamed: Resources.Buttons.right)
-        rightButton.name = Resources.Buttons.right
-        rightButton.position = CGPoint(x: middleLabel.frame.maxX + 35, y: middleLabel.frame.midY)
-        addChild(rightButton)
-        
         let policyButton = SKSpriteNode(imageNamed: Resources.Buttons.policy)
         policyButton.name = Resources.Buttons.policy
         policyButton.position = CGPoint(x: frame.midX, y: frame.minY + 85)
         addChild(policyButton)
     }
     
-    func setupBackAndQuestionMarkButtons() {
+    private func setupLabelForRightButton() {
+        rightButton = SKSpriteNode(imageNamed: Resources.Buttons.right)
+        rightButton.name = Resources.Buttons.right
+        rightButton.position = CGPoint(x: middleLabel.frame.maxX + 35, y: middleLabel.frame.midY)
+        addChild(rightButton)
+    }
+    
+    private func setupLabelForLeftButton() {
+        leftButton = SKSpriteNode(imageNamed: Resources.Buttons.left)
+        leftButton.name = Resources.Buttons.left
+        leftButton.position = CGPoint(x: middleLabel.frame.minX - 35, y: middleLabel.frame.midY)
+        addChild(leftButton)
+    }
+    
+    func setupBackButton() {
+        setupLabelForLeftButton()
+        
         let backButton = SKSpriteNode(imageNamed: Resources.Buttons.back)
         backButton.name = Resources.Buttons.back
         backButton.position = CGPoint(x: leftButton.frame.midX + 5, y: leftButton.frame.midY)
         backButton.zPosition = 1
         addChild(backButton)
-        
+    }
+    
+    func setupQuestionMarkButton() {
+        setupLabelForRightButton()
         let questionMarkButton = SKSpriteNode(imageNamed: Resources.Buttons.questionMark)
         questionMarkButton.name = Resources.Buttons.questionMark
         questionMarkButton.position = CGPoint(x: rightButton.frame.midX - 5, y: rightButton.frame.midY)
@@ -87,7 +99,34 @@ class BaseScene: SKScene {
         addChild(questionMarkButton)
     }
     
-    private func formatAmount(_ amount: String) -> String {
+    func setupAchivementsButton() {
+        setupLabelForRightButton()
+        let achivmentsButton = SKSpriteNode(imageNamed: Resources.Buttons.achivements)
+        achivmentsButton.name = Resources.Buttons.achivements
+        achivmentsButton.position = CGPoint(x: rightButton.frame.midX - 6, y: rightButton.frame.midY)
+        achivmentsButton.zPosition = 1
+        addChild(achivmentsButton)
+    }
+    
+    func setupStoreButton() {
+        setupLabelForLeftButton()
+        let storeButton = SKSpriteNode(imageNamed: Resources.Buttons.store)
+        storeButton.name = Resources.Buttons.store
+        storeButton.position = CGPoint(x: leftButton.frame.midX + 5, y: leftButton.frame.midY)
+        storeButton.zPosition = 1
+        addChild(storeButton)
+    }
+    
+    func setupRefreshButton() {
+        setupLabelForRightButton()
+        let refreshButton = SKSpriteNode(imageNamed: Resources.Buttons.refersh)
+        refreshButton.name = Resources.Buttons.refersh
+        refreshButton.position = CGPoint(x: rightButton.frame.midX - 6, y: rightButton.frame.midY)
+        refreshButton.zPosition = 1
+        addChild(refreshButton)
+    }
+    
+    func formatAmount(_ amount: String) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.groupingSeparator = ","

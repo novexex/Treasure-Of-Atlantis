@@ -9,20 +9,37 @@ import SpriteKit
 
 class GameViewController: UIViewController {
     
-    var scoreAmount = 0
-    var avatar = Resources.Avatars.siren
-    
     var gameSetups: GameSetups!
+    lazy var scoreAmount = gameSetups.scoreAmount {
+        didSet {
+            gameSetups.scoreAmount = scoreAmount
+            for scene in sceneArray {
+                scene.scoreAmount.text = "SCORE: " + menuScene.formatAmount(String(scoreAmount))
+            }
+        }
+    }
+    lazy var avatar = gameSetups.avatar {
+        didSet {
+            gameSetups.avatar = avatar
+            saveGameSetup()
+            for scene in sceneArray {
+                scene.avatar.texture = SKTexture(imageNamed: avatar)
+            }
+        }
+    }
     
     // MARK: Scene propertys
+    private weak var prevScene: BaseScene?
     private weak var currentScene: BaseScene!
-    
     private lazy var splashScene = SplashScene(size: view.bounds.size, gameController: self)
+    
     private lazy var menuScene = MenuScene(size: view.bounds.size, gameController: self)
     private lazy var choosingLevelScene = ChoosingLevelScene(size: view.bounds.size, gameController: self)
     private lazy var lotteryScene = LotteryScene(size: view.bounds.size, gameController: self)
     private lazy var achivementsScene = AchivementsScene(size: view.bounds.size, gameController: self)
     private lazy var storeScene = StoreScene(size: view.bounds.size, gameController: self)
+    private lazy var gameScene = GameScene(level: 1, size: view.bounds.size, gameController: self)
+    private lazy var sceneArray = [menuScene, choosingLevelScene, lotteryScene, achivementsScene, storeScene, gameScene]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +53,15 @@ class GameViewController: UIViewController {
     }
     
     func backButtonPressed() {
-        presentBaseScene(menuScene)
+        if prevScene != nil && prevScene == choosingLevelScene {
+            choosingLevelScene = ChoosingLevelScene(size: view.bounds.size, gameController: self)
+            currentScene = choosingLevelScene
+        } else if prevScene == nil {
+            currentScene = menuScene
+        } else {
+            currentScene = prevScene
+        }
+        presentBaseScene(currentScene, saveCurrentScene: false)
     }
     
     func questionMarkButtonPressed() {
@@ -49,11 +74,16 @@ class GameViewController: UIViewController {
     }
     
     func startGameButtonPressed(level: Int) {
-        
+        gameScene = GameScene(level: level, size: view.bounds.size, gameController: self)
+        presentBaseScene(gameScene)
     }
     
     func lotteryButtonPressed() {
-        presentBaseScene(lotteryScene)
+        if !lotteryScene.isBonusClaimed {
+            presentBaseScene(lotteryScene)
+        } else {
+            print("u have been claimed bonus")
+        }
     }
     
     func policyButtonPressed() {
@@ -65,7 +95,7 @@ class GameViewController: UIViewController {
     }
     
     func storeButtonPressed() {
-        presentBaseScene(storeScene)
+        presentBaseScene(currentScene)
     }
     
     func presentMenu() {
@@ -98,8 +128,13 @@ class GameViewController: UIViewController {
         skView.presentScene(currentScene)
     }
     
-    private func presentBaseScene(_ scene: BaseScene) {
+    private func presentBaseScene(_ scene: BaseScene, saveCurrentScene: Bool = true) {
         if let view = view as? SKView {
+            if saveCurrentScene {
+                prevScene = currentScene
+            } else {
+                prevScene = nil
+            }
             currentScene.removeFromParent()
             currentScene = scene
             view.presentScene(currentScene)

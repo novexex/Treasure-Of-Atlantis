@@ -8,7 +8,6 @@
 import SpriteKit
 
 class StoreScene: BaseScene {
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             if let node = atPoint(touch.location(in: self)) as? SKSpriteNode {
@@ -21,14 +20,29 @@ class StoreScene: BaseScene {
                         gameController.questionMarkButtonPressed()
                     case Resources.Buttons.policy:
                         gameController.policyButtonPressed()
-//                    case Resources.Buttons.siren:
-//                        
-//                    case Resources.Buttons.triton:
-//                        
-//                    case Resources.Buttons.ceratiidae:
-//                        
-//                    case Resources.Buttons.kraken:
-//                        
+                    case Resources.Buttons.siren:
+                        gameController.avatar = Resources.Avatars.siren
+                    case Resources.Buttons.triton:
+                        if gameController.scoreAmount >= 500 {
+                            gameController.scoreAmount -= 500
+                            gameController.avatar = Resources.Avatars.triton
+                        } else {
+                            print("cant buy triton, not enoght score amount")
+                        }
+                    case Resources.Buttons.ceratiidae:
+                        if gameController.scoreAmount >= 3000 {
+                            gameController.scoreAmount -= 3000
+                            gameController.avatar = Resources.Avatars.ceratiidae
+                        } else {
+                            print("cant buy ceratiidae, not enoght score amount")
+                        }
+                    case Resources.Buttons.kraken:
+                        if gameController.scoreAmount >= 6000 {
+                            gameController.scoreAmount -= 6000
+                            gameController.avatar = Resources.Avatars.kraken
+                        } else {
+                            print("cant buy kraken, not enoght score amount")
+                        }
                     default: break
                 }
             }
@@ -36,28 +50,31 @@ class StoreScene: BaseScene {
     }
     
     override func setupUI() {
+        super.setupUI()
+        
         setBackground(with: Resources.Backgrounds.store)
         setupTopAndBotUI()
-        setupBackAndQuestionMarkButtons()
-        
+        setupBackButton()
+        setupQuestionMarkButton()
+
         let sirenButton = SKSpriteNode(imageNamed: Resources.Buttons.siren)
         sirenButton.name = Resources.Buttons.siren
-        sirenButton.position = CGPoint(x: frame.midX, y: leftButton.frame.minY - 140)
+        sirenButton.position = CGPoint(x: frame.midX, y: frame.midY + 160)
         addChild(sirenButton)
-        
+
         let tritonButton = SKSpriteNode(imageNamed: Resources.Buttons.triton)
         tritonButton.name = Resources.Buttons.triton
-        tritonButton.position = CGPoint(x: sirenButton.position.x, y: sirenButton.frame.midY - sirenButton.frame.height - 8)
+        tritonButton.position = CGPoint(x: sirenButton.position.x, y: sirenButton.frame.minY - (tritonButton.frame.height / 2) - 15)
         addChild(tritonButton)
-        
+
         let ceratiidaeButton = SKSpriteNode(imageNamed: Resources.Buttons.ceratiidae)
         ceratiidaeButton.name = Resources.Buttons.ceratiidae
-        ceratiidaeButton.position = CGPoint(x: tritonButton.position.x, y: tritonButton.frame.midY - tritonButton.frame.height - 25)
+        ceratiidaeButton.position = CGPoint(x: tritonButton.position.x, y: tritonButton.frame.minY - (ceratiidaeButton.frame.height / 2) - 15)
         addChild(ceratiidaeButton)
-        
+
         let krakenButton = SKSpriteNode(imageNamed: Resources.Buttons.kraken)
         krakenButton.name = Resources.Buttons.kraken
-        krakenButton.position = CGPoint(x: ceratiidaeButton.position.x, y: ceratiidaeButton.frame.midY - ceratiidaeButton.frame.height - 12)
+        krakenButton.position = CGPoint(x: ceratiidaeButton.position.x, y: ceratiidaeButton.frame.minY - (krakenButton.frame.height / 2) - 15)
         addChild(krakenButton)
     }
 }

@@ -15,6 +15,7 @@ enum Resources {
         static let achivements = "achivementBackground"
         static let store = "storeBackground"
         static let lottery = "lotteryBackground"
+        static let game = "gameBackground"
     }
     
     enum Buttons {
@@ -34,6 +35,7 @@ enum Resources {
         static let triton = "tritonButton"
         static let ceratiidae = "ceratiidaeButton"
         static let kraken = "krakenButton"
+        static let refersh = "refreshButton"
     }
     
     enum Elements {
@@ -41,21 +43,62 @@ enum Resources {
         static let score = "middleElement"
         static let stars = "stars"
         static let bwStars = "bwStars"
-        static let firstLevel = "firstLevel"
-        static let secondLevel = "secondLevel"
-        static let thirdLevel = "thirdLevel"
-        static let fourthLevel = "fourthLevel"
-        static let fifthLevel = "fifthLevel"
-        static let bwLevel = "bwLevel"
+        static let level = "level"
+        static let closedLevel = "level6"
+        static let closedSeashell = "closedSeashell"
+        static let win = "winCongrats"
+        static let lightEffect = "lightEffect"
+        static let openSeashell = "openSeashell"
+        static let title = "titleLevel"
+    }
+    
+    enum Achivmenets {
+        enum DictionaryKeys {
+            static let background = "background"
+            static let cup = "cup"
+            static let heart = "heart"
+            static let shield = "shield"
+            static let ring = "ring"
+            static let moneyBag = "moneyBag"
+        }
+        
+        enum Images {
+            static let background = "achivementBackground"
+            static let cup = "cupAchivement"
+            static let heart = "heartAchivement"
+            static let shield = "shieldAchivement"
+            static let ring = "ringAchivement"
+            static let moneyBag = "moneyBagAchivement"
+            static let pureCup = "pureCupAchivement"
+            static let pureHeart = "pureHeartAchivement"
+            static let pureShield = "pureShieldAchivement"
+            static let pureRing = "pureRingAchivement"
+            static let pureMoneyBag = "pureMoneyBagAchivement"
+        }
+    }
+    
+    enum Tiles {
+        static let background = "tileBackground"
+        static let clover = "cloverTile"
+        static let diamond = "diamondTile"
+        static let horseshoe = "horseshoeTile"
+        static let ring = "ringTile"
+        static let seven = "sevenTile"
     }
     
     enum Avatars {
         static let siren = "sirenAvatar"
         static let triton = "tritonAvatar"
+        static let ceratiidae = "ceratiidaeAvatar"
+        static let kraken = "krakenAvatar"
     }
     
     enum Fonts {
         static let EvilEmpire_Regular = "EvilEmpire"
+    }
+    
+    enum Colors {
+        static let blue = "AccentColor"
     }
     
     enum UserDefaultsKeys {

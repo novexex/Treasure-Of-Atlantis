@@ -20,6 +20,8 @@ class MenuScene: BaseScene {
                         gameController.achivementsButtonPressed()
                     case Resources.Buttons.start:
                         gameController.startButtonPressed()
+                    case Resources.Buttons.lottery:
+                        gameController.lotteryButtonPressed()
                     case Resources.Buttons.policy:
                         gameController.policyButtonPressed()
                     default: break
@@ -33,18 +35,8 @@ class MenuScene: BaseScene {
         
         setBackground(with: Resources.Backgrounds.menu)
         setupTopAndBotUI()
-        
-        let storeButton = SKSpriteNode(imageNamed: Resources.Buttons.store)
-        storeButton.name = Resources.Buttons.store
-        storeButton.position = CGPoint(x: leftButton.frame.midX + 5, y: leftButton.frame.midY)
-        storeButton.zPosition = 1
-        addChild(storeButton)
-        
-        let achivmentsButton = SKSpriteNode(imageNamed: Resources.Buttons.achivements)
-        achivmentsButton.name = Resources.Buttons.achivements
-        achivmentsButton.position = CGPoint(x: rightButton.frame.midX - 6, y: rightButton.frame.midY)
-        achivmentsButton.zPosition = 1
-        addChild(achivmentsButton)
+        setupStoreButton()
+        setupAchivementsButton()
         
         let startButton = SKSpriteNode(imageNamed: Resources.Buttons.start)
         startButton.name = Resources.Buttons.start

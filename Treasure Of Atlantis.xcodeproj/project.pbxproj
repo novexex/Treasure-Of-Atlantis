@@ -23,6 +23,9 @@
 		EB91D0A52A1090D9003DA117 /* Evil-Empire.otf in Resources */ = {isa = PBXBuildFile; fileRef = EB91D0A42A1090D9003DA117 /* Evil-Empire.otf */; };
 		EB91D0A82A1096B0003DA117 /* GameSetups.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91D0A72A1096B0003DA117 /* GameSetups.swift */; };
 		EB91D0AC2A10AC53003DA117 /* ChoosingLevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91D0AB2A10AC53003DA117 /* ChoosingLevelScene.swift */; };
+		EBF220D42A14E9F100708A1B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF220D32A14E9F100708A1B /* Extensions.swift */; };
+		EBF220D62A14F23800708A1B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF220D52A14F23800708A1B /* GameScene.swift */; };
+		EBF220D82A16714300708A1B /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF220D72A16714300708A1B /* File.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,9 @@
 		EB91D0A62A1090EE003DA117 /* Treasure-Of-Atlantis-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Treasure-Of-Atlantis-Info.plist"; path = "Treasure Of Atlantis/Resources/Treasure-Of-Atlantis-Info.plist"; sourceTree = SOURCE_ROOT; };
 		EB91D0A72A1096B0003DA117 /* GameSetups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSetups.swift; sourceTree = "<group>"; };
 		EB91D0AB2A10AC53003DA117 /* ChoosingLevelScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosingLevelScene.swift; sourceTree = "<group>"; };
+		EBF220D32A14E9F100708A1B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		EBF220D52A14F23800708A1B /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		EBF220D72A16714300708A1B /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +113,7 @@
 				EB91D09F2A108F84003DA117 /* WinScene.swift */,
 				EB91D0A12A108F9E003DA117 /* LotteryScene.swift */,
 				EB91D0AB2A10AC53003DA117 /* ChoosingLevelScene.swift */,
+				EBF220D52A14F23800708A1B /* GameScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -132,6 +139,7 @@
 			children = (
 				EB91D0AA2A10970E003DA117 /* Classes */,
 				EB91D0952A107562003DA117 /* Enums.swift */,
+				EBF220D32A14E9F100708A1B /* Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -149,6 +157,7 @@
 			children = (
 				EB91D0932A1074AA003DA117 /* BaseScene.swift */,
 				EB91D0A72A1096B0003DA117 /* GameSetups.swift */,
+				EBF220D72A16714300708A1B /* File.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -224,10 +233,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBF220D62A14F23800708A1B /* GameScene.swift in Sources */,
 				EB91D07E2A1073E5003DA117 /* MenuScene.swift in Sources */,
 				EB91D0A82A1096B0003DA117 /* GameSetups.swift in Sources */,
 				EB91D0AC2A10AC53003DA117 /* ChoosingLevelScene.swift in Sources */,
 				EB91D0A02A108F84003DA117 /* WinScene.swift in Sources */,
+				EBF220D82A16714300708A1B /* File.swift in Sources */,
 				EB91D0802A1073E5003DA117 /* GameViewController.swift in Sources */,
 				EB91D09A2A108F61003DA117 /* StoreScene.swift in Sources */,
 				EB91D0A22A108F9E003DA117 /* LotteryScene.swift in Sources */,
@@ -237,6 +248,7 @@
 				EB91D09E2A108F7D003DA117 /* LoseScene.swift in Sources */,
 				EB91D09C2A108F76003DA117 /* AchivementsScene.swift in Sources */,
 				EB91D0982A107793003DA117 /* SplashScene.swift in Sources */,
+				EBF220D42A14E9F100708A1B /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
