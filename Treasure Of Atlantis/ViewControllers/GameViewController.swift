@@ -39,6 +39,8 @@ class GameViewController: UIViewController {
     private lazy var achivementsScene = AchivementsScene(size: view.bounds.size, gameController: self)
     private lazy var storeScene = StoreScene(size: view.bounds.size, gameController: self)
     private lazy var gameScene = GameScene(level: 1, size: view.bounds.size, gameController: self)
+    private lazy var winScene = WinScene(levelScore: 0, size: view.bounds.size, gameController: self)
+    private lazy var loseScene = LoseScene(size: view.bounds.size, gameController: self)
     private lazy var sceneArray = [menuScene, choosingLevelScene, lotteryScene, achivementsScene, storeScene, gameScene]
     
     override func viewDidLoad() {
@@ -68,9 +70,10 @@ class GameViewController: UIViewController {
         
     }
     
-    func gameOver(isWin: Bool, level: Int) {
+    func gameOver(isWin: Bool, level: Int, levelScore: Int) {
         if isWin {
-            print("win")
+            winScene = WinScene(levelScore: levelScore, size: view.bounds.size, gameController: self)
+            presentBaseScene(winScene)
             gameSetups.isLevelCompleted[level] = true
             saveGameSetup()
         } else {

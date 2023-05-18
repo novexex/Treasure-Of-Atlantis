@@ -4,9 +4,25 @@ import SpriteKit
 class GameScene: BaseScene {
     let level: Int
     
-    private var tilesBackground = [[SKSpriteNode]]()
-    private var tiles = [[SKSpriteNode?]]()
+    private var levelScore = 0 {
+        willSet {
+            gameController.scoreAmount = newValue - levelScore
+        }
+    }
+    private var tilesBackground = [[SKSpriteNode]]() {
+        didSet {
+            tiles = Array(repeating: Array(repeating: SKSpriteNode(), count: colCount), count: rowCount)
+        }
+    }
+    private var tiles = [[SKSpriteNode]]()
+    private let spacing: CGFloat = 3
     
+    private var rowCount: Int {
+        tilesBackground.count
+    }
+    private var colCount: Int {
+        tilesBackground[0].count
+    }
     
     init(level: Int, size: CGSize, gameController: GameViewController) {
         self.level = level
@@ -40,7 +56,7 @@ class GameScene: BaseScene {
                         }
                 }
                 if isGameOver() {
-                    gameController.gameOver(isWin: true, level: level)
+                    gameController.gameOver(isWin: true, level: level, levelScore: levelScore)
                 }
             }
         }
@@ -60,9 +76,9 @@ class GameScene: BaseScene {
     }
     
     private func isGameOver() -> Bool {
-        for i in 0..<tiles.count {
-            for j in 0..<tiles[0].count {
-                if tiles[i][j] != nil {
+        for i in 0..<rowCount {
+            for j in 0..<colCount {
+                if tiles[i][j].name != nil {
                     return false
                 }
             }
@@ -71,10 +87,6 @@ class GameScene: BaseScene {
     }
     
     private func setTilesBackground() {
-        let rowCount = tilesBackground.count
-        let colCount = tilesBackground[0].count
-        let spacing: CGFloat = 3
-        
         guard let size = SKSpriteNode(imageNamed: Resources.Tiles.background).texture?.size() else { return }
         
         let totalWidth = CGFloat(colCount) * size.width + CGFloat(colCount - 1) * spacing
@@ -98,9 +110,6 @@ class GameScene: BaseScene {
     }
     
     private func setTitleAndSetupLevel() {
-        let rowCount = tilesBackground.count
-        let colCount = tilesBackground[0].count
-        let spacing: CGFloat = 3
         var image = String()
         
         if level == 1 {
@@ -130,9 +139,6 @@ class GameScene: BaseScene {
     }
     
     private func findMatches(row: Int, col: Int) {
-        let rowCount = tiles.count
-        let columnCount = tiles[0].count
-        
         var leftElement: Element?
         var rightElement: Element?
         var upElement: Element?
@@ -141,16 +147,16 @@ class GameScene: BaseScene {
         // left
         for c in (0..<col).reversed() {
             let element = tiles[row][c]
-            if let name = element?.name {
+            if let name = element.name {
                 leftElement = Element(name: name, position: (row, c))
                 break
             }
         }
         
         // right
-        for c in (col+1)..<columnCount {
+        for c in (col+1)..<colCount {
             let element = tiles[row][c]
-            if let name = element?.name {
+            if let name = element.name {
                 rightElement = Element(name: name, position: (row, c))
                 break
             }
@@ -159,7 +165,7 @@ class GameScene: BaseScene {
         // up
         for r in (0..<row).reversed() {
             let element = tiles[r][col]
-            if let name = element?.name {
+            if let name = element.name {
                 upElement = Element(name: name, position: (r, col))
                 break
             }
@@ -168,7 +174,7 @@ class GameScene: BaseScene {
         // down
         for r in (row+1)..<rowCount {
             let element = tiles[r][col]
-            if let name = element?.name {
+            if let name = element.name {
                 downElement = Element(name: name, position: (r, col))
                 break
             }
@@ -179,6 +185,7 @@ class GameScene: BaseScene {
     
     private func compareMatches(_ elements: [Element?]) {
         let validElements = elements.compactMap { $0 }
+        guard validElements.count != 0 else { return }
         
         for i in 0..<validElements.count - 1 {
             for j in i+1..<validElements.count {
@@ -187,17 +194,18 @@ class GameScene: BaseScene {
                 
                 if element1.name == element2.name {
                     removeMatchedTiles(first: element1, second: element2)
+                    levelScore += 200
                 }
             }
         }
     }
     
     private func removeMatchedTiles(first: Element, second: Element) {
-        tiles[first.position.0][first.position.1]?.removeFromParent()
-        tiles[second.position.0][second.position.1]?.removeFromParent()
+        tiles[first.position.0][first.position.1].removeFromParent()
+        tiles[second.position.0][second.position.1].removeFromParent()
         
-        tiles[first.position.0][first.position.1] = nil
-        tiles[second.position.0][second.position.1] = nil
+        tiles[first.position.0][first.position.1].name = nil
+        tiles[second.position.0][second.position.1].name = nil
     }
     
     private func getTilePosition(with backgroundName: String) -> (Int, Int)? {
@@ -224,19 +232,15 @@ class GameScene: BaseScene {
         switch level {
             case 1:
                 tilesBackground = Array(repeating: Array(repeating: SKSpriteNode(), count: 5), count: 3)
-                tiles = Array(repeating: Array(repeating: SKSpriteNode(), count: 5), count: 3)
+                
             case 2:
                 tilesBackground = Array(repeating: Array(repeating: SKSpriteNode(), count: 6), count: 4)
-                tiles = Array(repeating: Array(repeating: SKSpriteNode(), count: 6), count: 4)
             case 3:
                 tilesBackground = Array(repeating: Array(repeating: SKSpriteNode(), count: 6), count: 5)
-                tiles = Array(repeating: Array(repeating: SKSpriteNode(), count: 6), count: 5)
             case 4:
                 tilesBackground = Array(repeating: Array(repeating: SKSpriteNode(), count: 6), count: 5)
-                tiles = Array(repeating: Array(repeating: SKSpriteNode(), count: 6), count: 5)
             case 5:
                 tilesBackground = Array(repeating: Array(repeating: SKSpriteNode(), count: 6), count: 5)
-                tiles = Array(repeating: Array(repeating: SKSpriteNode(), count: 6), count: 5)
             default: break
         }
     }

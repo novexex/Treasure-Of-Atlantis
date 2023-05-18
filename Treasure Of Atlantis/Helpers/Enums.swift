@@ -10,7 +10,7 @@ enum Resources {
         static let splash = "splashBackground"
         static let menu = "menuBackground"
         static let choosingLevel = "choosingLevelBackground"
-        static let win = "winBackgrond"
+        static let win = "winBackground"
         static let lose = "loseBackground"
         static let achivements = "achivementBackground"
         static let store = "storeBackground"
@@ -36,6 +36,8 @@ enum Resources {
         static let ceratiidae = "ceratiidaeButton"
         static let kraken = "krakenButton"
         static let refersh = "refreshButton"
+        static let `continue` = "continueButton"
+        static let restart = "restartButton"
     }
     
     enum Elements {

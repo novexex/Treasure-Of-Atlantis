@@ -80,6 +80,36 @@ class BaseScene: SKScene {
         addChild(leftButton)
     }
     
+    func setupGameOverUI() {
+        let lotteryButton = SKSpriteNode(imageNamed: Resources.Buttons.lottery)
+        lotteryButton.name = Resources.Buttons.lottery
+        if let size = lotteryButton.texture?.size() {
+            lotteryButton.size = CGSize(width: size.width * 0.7, height: size.height * 0.7)
+        }
+        lotteryButton.position = CGPoint(x: frame.midX, y: frame.minY + 165)
+        addChild(lotteryButton)
+        
+        middleLabel = SKSpriteNode(imageNamed: Resources.Elements.score)
+        middleLabel.position = CGPoint(x: frame.midX, y: lotteryButton.frame.maxY + 80)
+        addChild(middleLabel)
+        
+        scoreAmount = SKLabelNode(text: "SCORE: " + formatAmount(String(gameController.scoreAmount)))
+        scoreAmount.fontName = Resources.Fonts.EvilEmpire_Regular
+        scoreAmount.horizontalAlignmentMode = .center
+        scoreAmount.fontSize = 25
+        scoreAmount.position = CGPoint(x: frame.midX, y: middleLabel.frame.midY - 9.5)
+        scoreAmount.zPosition = 1
+        addChild(scoreAmount)
+        
+        setupStoreButton()
+        setupLabelForRightButton()
+        let shieldButton = SKSpriteNode(imageNamed: Resources.Buttons.shield)
+        shieldButton.name = Resources.Buttons.shield
+        shieldButton.position = CGPoint(x: rightButton.frame.midX - 5, y: rightButton.frame.midY)
+        shieldButton.zPosition = 1
+        addChild(shieldButton)
+    }
+    
     func setupBackButton() {
         setupLabelForLeftButton()
         

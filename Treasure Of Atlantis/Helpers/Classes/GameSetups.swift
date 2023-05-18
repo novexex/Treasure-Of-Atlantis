@@ -14,6 +14,19 @@ class GameSetups: Codable {
         }
     }
     private(set) var achivements = [String:Bool]()
+    var currentLevel: Int {
+        if isLevelCompleted(5) {
+            return 5
+        } else if isLevelCompleted(4) {
+            return 4
+        } else if isLevelCompleted(3) {
+            return 3
+        } else if isLevelCompleted(2) {
+            return 2
+        } else {
+            return 1
+        }
+    }
     
     init() {
         scoreAmount = 0
@@ -37,16 +50,40 @@ class GameSetups: Codable {
         self.achivements = achivements
     }
     
+    func getAchivementForLevel(_ level: Int) -> String {
+        switch level {
+            case 1:
+                return Resources.Achivmenets.Images.pureHeart
+            case 2:
+                return Resources.Achivmenets.Images.pureShield
+            case 3:
+                return Resources.Achivmenets.Images.pureRing
+            case 4:
+                return Resources.Achivmenets.Images.pureCup
+            case 5:
+                return Resources.Achivmenets.Images.pureMoneyBag
+            default:
+                return ""
+        }
+    }
+    
+    private func isLevelCompleted(_ level: Int) -> Bool {
+        if isLevelCompleted[level] ?? false {
+            return true
+        }
+        return false
+    }
+    
     private func achivementsUpdate() {
-        if isLevelCompleted[1] ?? false {
+        if isLevelCompleted(1) {
             achivements[Resources.Achivmenets.DictionaryKeys.heart] = true
-        } else if isLevelCompleted[2] ?? false {
+        } else if isLevelCompleted(2) {
             achivements[Resources.Achivmenets.DictionaryKeys.shield] = true
-        } else if isLevelCompleted[3] ?? false {
+        } else if isLevelCompleted(3) {
             achivements[Resources.Achivmenets.DictionaryKeys.ring] = true
-        } else if isLevelCompleted[4] ?? false {
+        } else if isLevelCompleted(4) {
             achivements[Resources.Achivmenets.DictionaryKeys.cup] = true
-        } else if isLevelCompleted[5] ?? false {
+        } else if isLevelCompleted(5) {
             achivements[Resources.Achivmenets.DictionaryKeys.moneyBag] = true
         }
     }
