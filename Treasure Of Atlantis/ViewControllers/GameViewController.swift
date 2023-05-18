@@ -115,7 +115,7 @@ class GameViewController: UIViewController {
         presentBaseScene(menuScene)
     }
     
-    private func loadGameSetup() {
+    func loadGameSetup() {
         if let savedGameSetups = UserDefaults.standard.object(forKey: Resources.UserDefaultsKeys.gameSetups) as? Data {
             if let loadedGameSetups = try? JSONDecoder().decode(GameSetups.self, from: savedGameSetups) {
                 gameSetups = loadedGameSetups
@@ -125,7 +125,7 @@ class GameViewController: UIViewController {
         }
     }
     
-    private func saveGameSetup() {
+    func saveGameSetup() {
         if let encoded = try? JSONEncoder().encode(gameSetups) {
             UserDefaults.standard.set(encoded, forKey: Resources.UserDefaultsKeys.gameSetups)
         }

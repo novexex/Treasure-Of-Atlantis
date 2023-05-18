@@ -5,8 +5,8 @@ class GameScene: BaseScene {
     let level: Int
     
     private var levelScore = 0 {
-        willSet {
-            gameController.scoreAmount = newValue - levelScore
+        didSet {
+            gameController.scoreAmount = levelScore - oldValue
         }
     }
     private var tilesBackground = [[SKSpriteNode]]() {
