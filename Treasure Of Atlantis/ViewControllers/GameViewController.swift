@@ -108,7 +108,7 @@ class GameViewController: UIViewController {
     }
     
     func storeButtonPressed() {
-        presentBaseScene(currentScene)
+        presentBaseScene(storeScene)
     }
     
     func presentMenu() {

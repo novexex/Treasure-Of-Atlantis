@@ -20,8 +20,8 @@ class ChoosingLevelScene: BaseScene {
                         Resources.Buttons.back:
                         gameController.backButtonPressed()
                     case Resources.Buttons.right,
-                        Resources.Buttons.questionMark:
-                        gameController.questionMarkButtonPressed()
+                        Resources.Buttons.achivements:
+                        gameController.achivementsButtonPressed()
                     case Resources.Buttons.policy:
                         gameController.policyButtonPressed()
                     default:
