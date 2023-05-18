@@ -4,7 +4,7 @@ import SpriteKit
 class GameScene: BaseScene {
     let level: Int
     
-    private var tilesBackground = [[SKSpriteNode?]]()
+    private var tilesBackground = [[SKSpriteNode]]()
     private var tiles = [[SKSpriteNode?]]()
     
     init(level: Int, size: CGSize, gameController: GameViewController) {
@@ -91,7 +91,7 @@ class GameScene: BaseScene {
         }
         
         let title = SKSpriteNode(imageNamed: image)
-        let middleElement = tilesBackground[0][(colCount/2)-1] ?? SKSpriteNode()
+        let middleElement = tilesBackground[0][(colCount/2)-1] 
         guard let size = title.texture?.size() else { return }
         if level == 1 {
             title.size = CGSize(width: size.width * 0.85, height: size.height * 0.85)
@@ -155,7 +155,7 @@ class GameScene: BaseScene {
     
     private func compareMatches(_ elements: [Element?]) {
         let validElements = elements.compactMap { $0 }
-
+        
         for i in 0..<validElements.count - 1 {
             for j in i+1..<validElements.count {
                 let element1 = validElements[i]
@@ -167,7 +167,7 @@ class GameScene: BaseScene {
             }
         }
     }
-
+    
     private func removeMatchedTiles(first: Element, second: Element) {
         tiles[first.position.0][first.position.1]?.removeFromParent()
         tiles[second.position.0][second.position.1]?.removeFromParent()
@@ -180,7 +180,7 @@ class GameScene: BaseScene {
         var name = backgroundName
         guard let col = name.popLast() else { return nil}
         guard let row = name.last else { return nil }
-
+        
         if let digitCol = Int(String(col)), let digitRow = Int(String(row)) {
             return (digitRow, digitCol)
         } else {
@@ -191,8 +191,7 @@ class GameScene: BaseScene {
     private func removeTiles(row: [Int], col: [Int]) {
         for i in row {
             for j in col {
-                tilesBackground[i][j]?.removeFromParent()
-                tilesBackground[i][j] = nil
+                tilesBackground[i][j].removeFromParent()
             }
         }
     }
@@ -226,9 +225,8 @@ class GameScene: BaseScene {
         if let size = tile.texture?.size() {
             tile.size = CGSize(width: size.width * 0.8, height: size.height * 0.8)
         }
-        if let backgroundElement = tilesBackground[first][second] {
-            tile.position = CGPoint(x: backgroundElement.frame.midX, y: backgroundElement.frame.midY)
-        }
+        tile.position = CGPoint(x: tilesBackground[first][second].frame.midX, y: tilesBackground[first][second].frame.midY)
+        
         tiles[first][second] = tile
         addChild(tile)
     }
