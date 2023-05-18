@@ -3,6 +3,22 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "GameScene.isGameOver():GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tiles[i][j]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "StoreScene.touchesBegan(_:with:):StoreScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "gameController.scoreAmount &gt;= 500">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "LotteryScene.touchHandling(name:):LotteryScene.swift">
          <PersistentStrings>
             <PersistentString
@@ -13,14 +29,6 @@
             </PersistentString>
             <PersistentString
                value = "seashellMatrix[0].count">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "StoreScene.touchesBegan(_:with:):StoreScene.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "gameController.scoreAmount &gt;= 500">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

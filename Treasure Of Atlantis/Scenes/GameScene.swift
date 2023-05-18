@@ -7,6 +7,7 @@ class GameScene: BaseScene {
     private var tilesBackground = [[SKSpriteNode]]()
     private var tiles = [[SKSpriteNode?]]()
     
+    
     init(level: Int, size: CGSize, gameController: GameViewController) {
         self.level = level
         super.init(size: size, gameController: gameController)
@@ -38,6 +39,9 @@ class GameScene: BaseScene {
                             }
                         }
                 }
+                if isGameOver() {
+                    gameController.gameOver(isWin: true, level: level)
+                }
             }
         }
     }
@@ -50,7 +54,23 @@ class GameScene: BaseScene {
         setupBackButton()
         setupRefreshButton()
         setupTileMatrix()
-        
+        setTilesBackground()
+        setTitleAndSetupLevel()
+        setTiles()
+    }
+    
+    private func isGameOver() -> Bool {
+        for i in 0..<tiles.count {
+            for j in 0..<tiles[0].count {
+                if tiles[i][j] != nil {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+    
+    private func setTilesBackground() {
         let rowCount = tilesBackground.count
         let colCount = tilesBackground[0].count
         let spacing: CGFloat = 3
@@ -74,24 +94,30 @@ class GameScene: BaseScene {
                 addChild(tile)
             }
         }
-        
+
+    }
+    
+    private func setTitleAndSetupLevel() {
+        let rowCount = tilesBackground.count
+        let colCount = tilesBackground[0].count
+        let spacing: CGFloat = 3
         var image = String()
         
         if level == 1 {
             image = Resources.Elements.title + String(1)
         } else if level == 2 {
-            removeTiles(row: [0,0,rowCount-1,rowCount-1], col: [0,colCount-1,0,colCount-1])
+            correctMatrix(row: [0,0,rowCount-1,rowCount-1], col: [0,colCount-1,0,colCount-1])
             image = Resources.Elements.title + String(2)
         } else if level == 5 {
-            removeTiles(row: [2,2,2,2], col: [1,2,3,4])
-            removeTiles(row: [3,3], col: [2,3])
+            correctMatrix(row: [2,2,2,2], col: [1,2,3,4])
+            correctMatrix(row: [3,3], col: [2,3])
             image = Resources.Elements.title + String(3)
         } else {
             image = Resources.Elements.title + String(3)
         }
         
         let title = SKSpriteNode(imageNamed: image)
-        let middleElement = tilesBackground[0][(colCount/2)-1] 
+        let middleElement = tilesBackground[0][(colCount/2)-1]
         guard let size = title.texture?.size() else { return }
         if level == 1 {
             title.size = CGSize(width: size.width * 0.85, height: size.height * 0.85)
@@ -101,8 +127,6 @@ class GameScene: BaseScene {
         title.zPosition = 1
         title.position = CGPoint(x: frame.midX, y: middleElement.frame.maxY + (title.frame.height / 2) + spacing)
         addChild(title)
-        
-        pozor()
     }
     
     private func findMatches(row: Int, col: Int) {
@@ -114,7 +138,7 @@ class GameScene: BaseScene {
         var upElement: Element?
         var downElement: Element?
         
-        // Поиск влево
+        // left
         for c in (0..<col).reversed() {
             let element = tiles[row][c]
             if let name = element?.name {
@@ -123,7 +147,7 @@ class GameScene: BaseScene {
             }
         }
         
-        // Поиск вправо
+        // right
         for c in (col+1)..<columnCount {
             let element = tiles[row][c]
             if let name = element?.name {
@@ -132,7 +156,7 @@ class GameScene: BaseScene {
             }
         }
         
-        // Поиск вверх
+        // up
         for r in (0..<row).reversed() {
             let element = tiles[r][col]
             if let name = element?.name {
@@ -141,7 +165,7 @@ class GameScene: BaseScene {
             }
         }
         
-        // Поиск вниз
+        // down
         for r in (row+1)..<rowCount {
             let element = tiles[r][col]
             if let name = element?.name {
@@ -188,7 +212,7 @@ class GameScene: BaseScene {
         }
     }
     
-    private func removeTiles(row: [Int], col: [Int]) {
+    private func correctMatrix(row: [Int], col: [Int]) {
         for i in row {
             for j in col {
                 tilesBackground[i][j].removeFromParent()
@@ -231,7 +255,7 @@ class GameScene: BaseScene {
         addChild(tile)
     }
     
-    private func pozor() {
+    private func setTiles() {
         switch level {
             case 1:
                 setTile(named: Resources.Tiles.diamond, position: [0,0])
@@ -333,7 +357,7 @@ class GameScene: BaseScene {
                 
                 setTile(named: Resources.Tiles.clover, position: [0,1])
                 setTile(named: Resources.Tiles.clover, position: [1,0])
-                setTile(named: Resources.Tiles.clover, position: [1,3])
+                setTile(named: Resources.Tiles.clover, position: [1,2])
                 setTile(named: Resources.Tiles.clover, position: [3,4])
                 setTile(named: Resources.Tiles.clover, position: [4,1])
                 setTile(named: Resources.Tiles.clover, position: [4,5])
@@ -342,7 +366,7 @@ class GameScene: BaseScene {
                 setTile(named: Resources.Tiles.diamond, position: [1,5])
                 
                 setTile(named: Resources.Tiles.ring, position: [0,5])
-                setTile(named: Resources.Tiles.ring, position: [0,3])
+                setTile(named: Resources.Tiles.ring, position: [1,3])
                 setTile(named: Resources.Tiles.ring, position: [3,5])
                 
                 setTile(named: Resources.Tiles.seven, position: [3,1])

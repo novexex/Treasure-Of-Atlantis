@@ -25,7 +25,7 @@
 		EB91D0AC2A10AC53003DA117 /* ChoosingLevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91D0AB2A10AC53003DA117 /* ChoosingLevelScene.swift */; };
 		EBF220D42A14E9F100708A1B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF220D32A14E9F100708A1B /* Extensions.swift */; };
 		EBF220D62A14F23800708A1B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF220D52A14F23800708A1B /* GameScene.swift */; };
-		EBF220D82A16714300708A1B /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF220D72A16714300708A1B /* File.swift */; };
+		EBF220D82A16714300708A1B /* ElementStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF220D72A16714300708A1B /* ElementStruct.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,7 +49,7 @@
 		EB91D0AB2A10AC53003DA117 /* ChoosingLevelScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosingLevelScene.swift; sourceTree = "<group>"; };
 		EBF220D32A14E9F100708A1B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EBF220D52A14F23800708A1B /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		EBF220D72A16714300708A1B /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		EBF220D72A16714300708A1B /* ElementStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementStruct.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +140,7 @@
 				EB91D0AA2A10970E003DA117 /* Classes */,
 				EB91D0952A107562003DA117 /* Enums.swift */,
 				EBF220D32A14E9F100708A1B /* Extensions.swift */,
+				EBF220D72A16714300708A1B /* ElementStruct.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -157,7 +158,6 @@
 			children = (
 				EB91D0932A1074AA003DA117 /* BaseScene.swift */,
 				EB91D0A72A1096B0003DA117 /* GameSetups.swift */,
-				EBF220D72A16714300708A1B /* File.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -238,7 +238,7 @@
 				EB91D0A82A1096B0003DA117 /* GameSetups.swift in Sources */,
 				EB91D0AC2A10AC53003DA117 /* ChoosingLevelScene.swift in Sources */,
 				EB91D0A02A108F84003DA117 /* WinScene.swift in Sources */,
-				EBF220D82A16714300708A1B /* File.swift in Sources */,
+				EBF220D82A16714300708A1B /* ElementStruct.swift in Sources */,
 				EB91D0802A1073E5003DA117 /* GameViewController.swift in Sources */,
 				EB91D09A2A108F61003DA117 /* StoreScene.swift in Sources */,
 				EB91D0A22A108F9E003DA117 /* LotteryScene.swift in Sources */,

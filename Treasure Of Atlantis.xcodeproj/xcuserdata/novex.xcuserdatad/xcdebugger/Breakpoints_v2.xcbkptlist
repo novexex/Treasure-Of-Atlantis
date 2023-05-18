@@ -220,9 +220,9 @@
             filePath = "Treasure Of Atlantis/Scenes/GameScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "234"
-            endingLineNumber = "234"
-            landmarkName = "pozor()"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
+            landmarkName = "setTiles()"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -236,8 +236,8 @@
             filePath = "Treasure Of Atlantis/Scenes/GameScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "findMatches(row:col:)"
             landmarkType = "9">
             <Locations>
@@ -284,10 +284,74 @@
             filePath = "Treasure Of Atlantis/Scenes/GameScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
             landmarkName = "touchesBegan(_:with:)"
             landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "679BA443-66AA-4531-A53A-775116C47CF3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Treasure Of Atlantis/Scenes/GameScene.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "isGameOver()"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E54A189F-C181-4212-B7D7-8F7815880EC3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Treasure Of Atlantis/Scenes/GameScene.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "isGameOver()"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "E54A189F-C181-4212-B7D7-8F7815880EC3 - 5dbe798b1712321d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Treasure_Of_Atlantis.GameScene.isGameOver() -&gt; Swift.Bool"
+                  moduleName = "Treasure Of Atlantis"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/novex/Documents/Code/GitHub/Treasure%20Of%20Atlantis/Treasure%20Of%20Atlantis/Scenes/GameScene.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "100">
+               </Location>
+               <Location
+                  uuid = "E54A189F-C181-4212-B7D7-8F7815880EC3 - 5dbe798b171232b8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Treasure_Of_Atlantis.GameScene.isGameOver() -&gt; Swift.Bool"
+                  moduleName = "Treasure Of Atlantis"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/novex/Documents/Code/GitHub/Treasure%20Of%20Atlantis/Treasure%20Of%20Atlantis/Scenes/GameScene.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "100">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

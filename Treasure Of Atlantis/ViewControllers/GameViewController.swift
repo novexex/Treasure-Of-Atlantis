@@ -68,6 +68,16 @@ class GameViewController: UIViewController {
         
     }
     
+    func gameOver(isWin: Bool, level: Int) {
+        if isWin {
+            print("win")
+            gameSetups.isLevelCompleted[level] = true
+            saveGameSetup()
+        } else {
+            print("lose")
+        }
+    }
+    
     func startButtonPressed() {
         choosingLevelScene = ChoosingLevelScene(size: view.bounds.size, gameController: self)
         presentBaseScene(choosingLevelScene)
