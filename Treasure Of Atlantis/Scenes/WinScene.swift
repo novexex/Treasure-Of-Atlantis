@@ -8,11 +8,11 @@
 import SpriteKit
 
 class WinScene: BaseScene {
+    let level: Int
     let levelScore: Int
     
-    private lazy var currentLevel = gameController.gameSetups.currentLevel
-    
-    init(levelScore: Int, size: CGSize, gameController: GameViewController) {
+    init(level: Int, levelScore: Int, size: CGSize, gameController: GameViewController) {
+        self.level = level
         self.levelScore = levelScore
         super.init(size: size, gameController: gameController)
     }
@@ -47,7 +47,7 @@ class WinScene: BaseScene {
         setBackground(with: Resources.Backgrounds.win)
         setupGameOverUI()
         
-        let achivement = SKSpriteNode(imageNamed: gameController.gameSetups.getAchivementForLevel(currentLevel))
+        let achivement = SKSpriteNode(imageNamed: gameController.gameSetups.getAchivementForLevel(level))
         if let size = achivement.texture?.size() {
             achivement.size = CGSize(width: size.width * 0.7, height: size.height * 0.7)
         }

@@ -8,7 +8,14 @@
 import SpriteKit
 
 class LotteryScene: BaseScene {
-    var isBonusClaimed = false
+    var isBonusClaimed = false {
+        didSet {
+            if isBonusClaimed {
+                gameController.lastLotteryPlay = Date()
+                gameController.saveGameSetup()
+            }
+        }
+    }
     private var seashellButtons = Array(repeating: Array(repeating: SKSpriteNode(), count: 2), count: 3)
     private var winningAmount = [1000, 500, 500, 500, 0, 0]
     
@@ -78,6 +85,8 @@ class LotteryScene: BaseScene {
                 let randomAmount = winningAmount.remove(at: randomIndex)
                 if randomAmount == 0 {
                     isBonusClaimed = true
+                    
+                    
                     
                     let attributedText = NSMutableAttributedString()
                     let paragraphStyle = NSMutableParagraphStyle()

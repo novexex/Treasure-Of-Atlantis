@@ -3,10 +3,10 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "GameScene.compareMatches(_:):GameScene.swift">
+         contextName = "GameViewController.saveGameSetup():GameViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "levelScore">
+               value = "lastLotteryPlay">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -19,10 +19,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "StoreScene.touchesBegan(_:with:):StoreScene.swift">
+         contextName = "GameViewController.scoreAmount.getter:GameViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "gameController.scoreAmount &gt;= 500">
+               value = "avatar">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameScene.levelScore.didset:GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "levelScore">
+            </PersistentString>
+            <PersistentString
+               value = "gameController.scoreAmount">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -35,16 +46,51 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "GameViewController.loadGameSetup():GameViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "savedDate">
+            </PersistentString>
+            <PersistentString
+               value = "gameSetups">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AchivementsScene.getTexture(named:):AchivementsScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "gameController.gameSetups.achivements">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameScene.compareMatches(_:):GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "levelScore">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "StoreScene.touchesBegan(_:with:):StoreScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "gameController.scoreAmount &gt;= 500">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "LotteryScene.touchHandling(name:):LotteryScene.swift">
          <PersistentStrings>
+            <PersistentString
+               value = "seashellMatrix[0].count">
+            </PersistentString>
             <PersistentString
                value = "winningAmount.count">
             </PersistentString>
             <PersistentString
                value = "seashellMatrix.count">
-            </PersistentString>
-            <PersistentString
-               value = "seashellMatrix[0].count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -52,13 +98,21 @@
          contextName = "ChoosingLevelScene.setupUI():ChoosingLevelScene.swift">
          <PersistentStrings>
             <PersistentString
+               value = "CGFloat(Int(i/2))">
+            </PersistentString>
+            <PersistentString
                value = "levels.count">
             </PersistentString>
             <PersistentString
                value = "children">
             </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameViewController.init(nibName:bundle:):GameViewController.swift">
+         <PersistentStrings>
             <PersistentString
-               value = "CGFloat(Int(i/2))">
+               value = "scoreAmount">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

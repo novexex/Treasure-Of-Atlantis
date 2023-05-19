@@ -105,5 +105,6 @@ enum Resources {
     
     enum UserDefaultsKeys {
         static let gameSetups = "gameSetups"
+        static let lastLotteryPlay = "lastLotteryPlay"
     }
 }

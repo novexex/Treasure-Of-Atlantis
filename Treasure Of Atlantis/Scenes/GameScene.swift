@@ -6,7 +6,7 @@ class GameScene: BaseScene {
     
     private var levelScore = 0 {
         didSet {
-            gameController.scoreAmount = levelScore - oldValue
+            gameController.scoreAmount += levelScore - oldValue
         }
     }
     private var tilesBackground = [[SKSpriteNode]]() {
@@ -39,9 +39,11 @@ class GameScene: BaseScene {
                 switch node.name {
                     case Resources.Buttons.left,
                         Resources.Buttons.back:
+                        gameController.scoreAmount -= levelScore
                         gameController.backButtonPressed()
                     case Resources.Buttons.right,
                         Resources.Buttons.refersh:
+                        gameController.scoreAmount -= levelScore
                         gameController.startGameButtonPressed(level: level)
                     case Resources.Buttons.policy:
                         gameController.policyButtonPressed()
@@ -55,8 +57,11 @@ class GameScene: BaseScene {
                             }
                         }
                 }
-                if isGameOver() {
+                if isGameOver() == 0 {
                     gameController.gameOver(isWin: true, level: level, levelScore: levelScore)
+                } else if isGameOver() == 1 {
+                    gameController.scoreAmount -= levelScore
+                    gameController.gameOver(isWin: false, level: level, levelScore: levelScore)
                 }
             }
         }
@@ -75,15 +80,21 @@ class GameScene: BaseScene {
         setTiles()
     }
     
-    private func isGameOver() -> Bool {
+    private func isGameOver() -> Int {
+        var tilesLeft = 0
         for i in 0..<rowCount {
             for j in 0..<colCount {
                 if tiles[i][j].name != nil {
-                    return false
+                    tilesLeft += 1
                 }
             }
         }
-        return true
+        if tilesLeft == 0 {
+            return 0
+        } else if tilesLeft == 1 {
+            return 1
+        }
+        return 2
     }
     
     private func setTilesBackground() {
@@ -185,7 +196,7 @@ class GameScene: BaseScene {
     
     private func compareMatches(_ elements: [Element?]) {
         let validElements = elements.compactMap { $0 }
-        guard validElements.count != 0 else { return }
+        guard validElements.count >= 2 else { return }
         
         for i in 0..<validElements.count - 1 {
             for j in i+1..<validElements.count {
@@ -193,16 +204,23 @@ class GameScene: BaseScene {
                 let element2 = validElements[j]
                 
                 if element1.name == element2.name {
-                    removeMatchedTiles(first: element1, second: element2)
-                    levelScore += 200
+                    removeMatchedTilesAndAddScore(first: element1, second: element2)
                 }
             }
         }
     }
     
-    private func removeMatchedTiles(first: Element, second: Element) {
+    private func removeMatchedTilesAndAddScore(first: Element, second: Element) {
         tiles[first.position.0][first.position.1].removeFromParent()
         tiles[second.position.0][second.position.1].removeFromParent()
+        
+        if tiles[first.position.0][first.position.1].name != nil && tiles[second.position.0][second.position.1].name != nil {
+            levelScore += 200
+        } else if tiles[first.position.0][first.position.1].name != nil {
+            levelScore += 100
+        } else if tiles[second.position.0][second.position.1].name != nil {
+            levelScore += 100
+        }
         
         tiles[first.position.0][first.position.1].name = nil
         tiles[second.position.0][second.position.1].name = nil

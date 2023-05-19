@@ -8,8 +8,16 @@
 import SpriteKit
 
 class LoseScene: BaseScene {
+    let level: Int
     
-    private lazy var currentLevel = gameController.gameSetups.currentLevel
+    init(level: Int, size: CGSize, gameController: GameViewController) {
+        self.level = level
+        super.init(size: size, gameController: gameController)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
@@ -24,7 +32,7 @@ class LoseScene: BaseScene {
                     case Resources.Buttons.lottery:
                         gameController.lotteryButtonPressed()
                     case Resources.Buttons.restart:
-                        gameController.startGameButtonPressed(level: currentLevel)
+                        gameController.startGameButtonPressed(level: level)
                     default: break
                 }
             }

@@ -8,8 +8,8 @@
 import SpriteKit
 
 class GameViewController: UIViewController {
-    
     var gameSetups: GameSetups!
+    var lastLotteryPlay: Date?
     lazy var scoreAmount = gameSetups.scoreAmount {
         didSet {
             gameSetups.scoreAmount = scoreAmount
@@ -27,6 +27,7 @@ class GameViewController: UIViewController {
             }
         }
     }
+    private var alertController = UIAlertController()
     
     // MARK: Scene propertys
     private weak var prevScene: BaseScene?
@@ -39,15 +40,16 @@ class GameViewController: UIViewController {
     private lazy var achivementsScene = AchivementsScene(size: view.bounds.size, gameController: self)
     private lazy var storeScene = StoreScene(size: view.bounds.size, gameController: self)
     private lazy var gameScene = GameScene(level: 1, size: view.bounds.size, gameController: self)
-    private lazy var winScene = WinScene(levelScore: 0, size: view.bounds.size, gameController: self)
-    private lazy var loseScene = LoseScene(size: view.bounds.size, gameController: self)
+    private lazy var winScene = WinScene(level: 1, levelScore: 0, size: view.bounds.size, gameController: self)
+    private lazy var loseScene = LoseScene(level: 1, size: view.bounds.size, gameController: self)
     private lazy var sceneArray = [menuScene, choosingLevelScene, lotteryScene, achivementsScene, storeScene, gameScene]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadGameSetup()
         getSKView()
-        gameSetups = GameSetups()
+        setupAlerts()
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -67,17 +69,18 @@ class GameViewController: UIViewController {
     }
     
     func questionMarkButtonPressed() {
-        
+        print("?")
     }
     
     func gameOver(isWin: Bool, level: Int, levelScore: Int) {
         if isWin {
-            winScene = WinScene(levelScore: levelScore, size: view.bounds.size, gameController: self)
+            winScene = WinScene(level: level, levelScore: levelScore, size: view.bounds.size, gameController: self)
             presentBaseScene(winScene)
             gameSetups.isLevelCompleted[level] = true
             saveGameSetup()
         } else {
-            print("lose")
+            loseScene = LoseScene(level: level, size: view.bounds.size, gameController: self)
+            presentBaseScene(loseScene)
         }
     }
     
@@ -88,19 +91,26 @@ class GameViewController: UIViewController {
     
     func startGameButtonPressed(level: Int) {
         gameScene = GameScene(level: level, size: view.bounds.size, gameController: self)
+        sceneArray.removeLast()
+        sceneArray.append(gameScene)
         presentBaseScene(gameScene)
     }
     
     func lotteryButtonPressed() {
-        if !lotteryScene.isBonusClaimed {
-            presentBaseScene(lotteryScene)
+        if let lastLotteryPlay {
+            if Calendar.current.isDateInToday(lastLotteryPlay) {
+                present(alertController, animated: true)
+            } else {
+                lotteryScene.isBonusClaimed = false
+                presentBaseScene(lotteryScene)
+            }
         } else {
-            print("u have been claimed bonus")
+            presentBaseScene(lotteryScene)
         }
     }
     
     func policyButtonPressed() {
-        
+        print("policy button")
     }
     
     func achivementsButtonPressed() {
@@ -118,17 +128,28 @@ class GameViewController: UIViewController {
     func loadGameSetup() {
         if let savedGameSetups = UserDefaults.standard.object(forKey: Resources.UserDefaultsKeys.gameSetups) as? Data {
             if let loadedGameSetups = try? JSONDecoder().decode(GameSetups.self, from: savedGameSetups) {
-                gameSetups = loadedGameSetups
+                self.gameSetups = loadedGameSetups
             }
         } else {
             gameSetups = GameSetups()
+        }
+        
+        if let savedDate = UserDefaults.standard.object(forKey: Resources.UserDefaultsKeys.lastLotteryPlay) as? Date {
+            lastLotteryPlay = savedDate
         }
     }
     
     func saveGameSetup() {
         if let encoded = try? JSONEncoder().encode(gameSetups) {
             UserDefaults.standard.set(encoded, forKey: Resources.UserDefaultsKeys.gameSetups)
+            UserDefaults.standard.set(lastLotteryPlay, forKey: Resources.UserDefaultsKeys.lastLotteryPlay)
         }
+    }
+    
+    private func setupAlerts() {
+        alertController = UIAlertController(title: "", message: "You have been claimed bonus today", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
     }
     
     private func getSKView() {

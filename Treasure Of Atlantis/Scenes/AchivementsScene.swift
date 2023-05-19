@@ -60,9 +60,7 @@ class AchivementsScene: BaseScene {
     
     private func getTexture(named: String) -> SKTexture {
         let image = UIImage(named: named)
-        var name = named.replacingOccurrences(of: "Achivement", with: "", range: named.startIndex..<named.endIndex)
-        let firstChar = name.prefix(1).lowercased()
-        name = firstChar + name.dropFirst()
+        let name = named.replacingOccurrences(of: "Achivement", with: "", range: named.startIndex..<named.endIndex)
         if gameController.gameSetups.achivements[name] ?? false {
             return SKTexture(image: image ?? UIImage())
         } else {
