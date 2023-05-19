@@ -93,6 +93,29 @@ class GameScene: BaseScene {
         for i in 0..<tilesBackground.count {
             for j in 0..<tilesBackground[0].count {
                 if tilesBackground[i][j] == tilesBackground[i][col] || tilesBackground[i][j] == tilesBackground[row][j] {
+                    if level == 2 {
+                        if i == 0 {
+                            if j == 5 || j == 0 {
+                                continue
+                            }
+                        }
+                        if i == 3 {
+                            if j == 0 || j == 5 {
+                                continue
+                            }
+                        }
+                    } else if level == 5 {
+                        if i == 2 {
+                            if j == 1 || j == 2 || j == 3 || j == 4 {
+                                continue
+                            }
+                        }
+                        if i == 3 {
+                            if j == 2 || j == 3 {
+                                continue
+                            }
+                        }
+                    }
                     let dot = SKSpriteNode(imageNamed: Resources.Elements.dot)
                     dot.zPosition = 1
                     dot.position = CGPoint(x: tilesBackground[i][j].frame.midX, y: tilesBackground[i][j].frame.midY)
