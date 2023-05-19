@@ -116,6 +116,7 @@ class GameScene: BaseScene {
                             }
                         }
                     }
+                    
                     let dot = SKSpriteNode(imageNamed: Resources.Elements.dot)
                     dot.zPosition = 1
                     dot.position = CGPoint(x: tilesBackground[i][j].frame.midX, y: tilesBackground[i][j].frame.midY)
