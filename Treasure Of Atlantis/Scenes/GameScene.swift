@@ -159,7 +159,7 @@ class GameScene: BaseScene {
         for c in (0..<col).reversed() {
             let element = tiles[row][c]
             if let name = element.name {
-                leftElement = Element(name: name, position: (row, c))
+                leftElement = Element(name: name, position: (row, c), direction: .left)
                 break
             }
         }
@@ -168,7 +168,7 @@ class GameScene: BaseScene {
         for c in (col+1)..<colCount {
             let element = tiles[row][c]
             if let name = element.name {
-                rightElement = Element(name: name, position: (row, c))
+                rightElement = Element(name: name, position: (row, c), direction: .right)
                 break
             }
         }
@@ -177,7 +177,7 @@ class GameScene: BaseScene {
         for r in (0..<row).reversed() {
             let element = tiles[r][col]
             if let name = element.name {
-                upElement = Element(name: name, position: (r, col))
+                upElement = Element(name: name, position: (r, col), direction: .up)
                 break
             }
         }
@@ -186,7 +186,7 @@ class GameScene: BaseScene {
         for r in (row+1)..<rowCount {
             let element = tiles[r][col]
             if let name = element.name {
-                downElement = Element(name: name, position: (r, col))
+                downElement = Element(name: name, position: (r, col), direction: .down)
                 break
             }
         }
@@ -211,9 +211,6 @@ class GameScene: BaseScene {
     }
     
     private func removeMatchedTilesAndAddScore(first: Element, second: Element) {
-        tiles[first.position.0][first.position.1].removeFromParent()
-        tiles[second.position.0][second.position.1].removeFromParent()
-        
         if tiles[first.position.0][first.position.1].name != nil && tiles[second.position.0][second.position.1].name != nil {
             levelScore += 200
         } else if tiles[first.position.0][first.position.1].name != nil {
@@ -222,9 +219,41 @@ class GameScene: BaseScene {
             levelScore += 100
         }
         
-        tiles[first.position.0][first.position.1].name = nil
-        tiles[second.position.0][second.position.1].name = nil
+        animateBounceAndDisappear(for: first)
+        animateBounceAndDisappear(for: second)
     }
+    
+    private func animateBounceAndDisappear(for element: Element) {
+        let tile = tiles[element.position.0][element.position.1]
+        
+        let physicsBody = SKPhysicsBody(rectangleOf: tile.size)
+        physicsBody.isDynamic = true
+        physicsBody.friction = 0.2
+        physicsBody.restitution = 0.8
+        tile.physicsBody = physicsBody
+
+        let fadeOutAction = SKAction.fadeOut(withDuration: 0.3)
+        let removeAction = SKAction.removeFromParent()
+        let sequence = SKAction.sequence([fadeOutAction, removeAction])
+        tile.run(sequence)
+
+        var force = CGVector()
+        switch element.direction {
+            case .right:
+                 force = CGVector(dx: 500, dy: 500)
+            case .left:
+                force = CGVector(dx: -500, dy: 500)
+            case .up:
+                force = CGVector(dx: 0, dy: 1000)
+            case .down:
+                force = CGVector(dx: 0, dy: -500)
+        }
+        physicsBody.applyForce(force)
+        
+        tile.run(sequence)
+        tile.name = nil
+    }
+    
     
     private func getTilePosition(with backgroundName: String) -> (Int, Int)? {
         var name = backgroundName

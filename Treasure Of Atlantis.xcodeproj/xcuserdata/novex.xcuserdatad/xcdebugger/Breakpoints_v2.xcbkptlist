@@ -220,8 +220,8 @@
             filePath = "Treasure Of Atlantis/Scenes/GameScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
+            startingLineNumber = "309"
+            endingLineNumber = "309"
             landmarkName = "setTiles()"
             landmarkType = "7">
          </BreakpointContent>
@@ -906,7 +906,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "0486C6BB-CCE7-4A94-A06E-94AE45C80031"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Treasure Of Atlantis/ViewControllers/GameViewController.swift"
@@ -954,7 +954,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "85B2DEFD-3DFE-4206-8247-188425D6B2DA"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Treasure Of Atlantis/ViewControllers/GameViewController.swift"
