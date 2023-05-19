@@ -58,10 +58,18 @@ class GameScene: BaseScene {
                         }
                 }
                 if isGameOver() == 0 {
-                    gameController.gameOver(isWin: true, level: level, levelScore: levelScore)
+                    let run = SKAction.run {
+                        self.gameController.gameOver(isWin: true, level: self.level, levelScore: self.levelScore)
+                    }
+                    let sequence = SKAction.sequence([SKAction.wait(forDuration: 0.3), run])
+                    view?.scene?.run(sequence)
                 } else if isGameOver() == 1 {
-                    gameController.scoreAmount -= levelScore
-                    gameController.gameOver(isWin: false, level: level, levelScore: levelScore)
+                    let run = SKAction.run {
+                        self.gameController.scoreAmount -= self.levelScore
+                        self.gameController.gameOver(isWin: false, level: self.level, levelScore: self.levelScore)
+                    }
+                    let sequence = SKAction.sequence([SKAction.wait(forDuration: 0.3), run])
+                    view?.scene?.run(sequence)
                 }
             }
         }

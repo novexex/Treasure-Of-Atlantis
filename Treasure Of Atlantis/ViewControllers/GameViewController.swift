@@ -171,7 +171,7 @@ class GameViewController: UIViewController {
             }
             currentScene.removeFromParent()
             currentScene = scene
-            view.presentScene(currentScene)
+            view.presentScene(currentScene, transition: .fade(withDuration: 0.4))
         }
     }
 }
