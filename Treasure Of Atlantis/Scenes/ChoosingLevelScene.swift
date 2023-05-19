@@ -18,7 +18,7 @@ class ChoosingLevelScene: BaseScene {
                 switch node.name {
                     case Resources.Buttons.left,
                         Resources.Buttons.back:
-                        gameController.backButtonPressed()
+                        gameController.presentMenu()
                     case Resources.Buttons.right,
                         Resources.Buttons.achivements:
                         gameController.achivementsButtonPressed()
