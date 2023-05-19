@@ -52,6 +52,7 @@ class GameScene: BaseScene {
                         if name.contains(Resources.Tiles.background) {
                             if let name = node.name {
                                 if let (row, col) = getTilePosition(with: name) {
+                                    dotsAnimation(row: row, col: col)
                                     findMatches(row: row, col: col)
                                 }
                             }
@@ -86,6 +87,25 @@ class GameScene: BaseScene {
         setTilesBackground()
         setTitleAndSetupLevel()
         setTiles()
+    }
+    
+    private func dotsAnimation(row: Int, col: Int) {
+        for i in 0..<tilesBackground.count {
+            for j in 0..<tilesBackground[0].count {
+                if tilesBackground[i][j] == tilesBackground[i][col] || tilesBackground[i][j] == tilesBackground[row][j] {
+                    let dot = SKSpriteNode(imageNamed: Resources.Elements.dot)
+                    dot.zPosition = 1
+                    dot.position = CGPoint(x: tilesBackground[i][j].frame.midX, y: tilesBackground[i][j].frame.midY)
+                    dot.setScale(0.1)
+                    addChild(dot)
+                    let scaleUpAction = SKAction.scale(to: 1.0, duration: 0.2)
+                    let scaleDownAction = SKAction.scale(to: 0.1, duration: 0.2)
+                    let fadeOutAction = SKAction.fadeOut(withDuration: 0.2)
+                    let sequence = SKAction.sequence([scaleUpAction, scaleDownAction, fadeOutAction, SKAction.removeFromParent()])
+                    dot.run(sequence)
+                }
+            }
+        }
     }
     
     private func isGameOver() -> Int {
@@ -304,7 +324,7 @@ class GameScene: BaseScene {
         guard let first = position.first, let second = position.last else { return }
         let tile = SKSpriteNode(imageNamed: named)
         tile.name = named
-        tile.zPosition = 1
+        tile.zPosition = 2
         if let size = tile.texture?.size() {
             tile.size = CGSize(width: size.width * 0.8, height: size.height * 0.8)
         }

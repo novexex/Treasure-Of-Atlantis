@@ -52,6 +52,7 @@ enum Resources {
         static let lightEffect = "lightEffect"
         static let openSeashell = "openSeashell"
         static let title = "titleLevel"
+        static let dot = "dot"
     }
     
     enum Achivmenets {
