@@ -89,45 +89,102 @@ class GameScene: BaseScene {
         setTiles()
     }
     
-    private func dotsAnimation(row: Int, col: Int) {
-        for i in 0..<tilesBackground.count {
-            for j in 0..<tilesBackground[0].count {
-                if tilesBackground[i][j] == tilesBackground[i][col] || tilesBackground[i][j] == tilesBackground[row][j] {
-                    if level == 2 {
-                        if i == 0 {
-                            if j == 5 || j == 0 {
-                                continue
-                            }
-                        }
-                        if i == 3 {
-                            if j == 0 || j == 5 {
-                                continue
-                            }
-                        }
-                    } else if level == 5 {
-                        if i == 2 {
-                            if j == 1 || j == 2 || j == 3 || j == 4 {
-                                continue
-                            }
-                        }
-                        if i == 3 {
-                            if j == 2 || j == 3 {
-                                continue
-                            }
-                        }
-                    }
-                    
-                    let dot = SKSpriteNode(imageNamed: Resources.Elements.dot)
-                    dot.zPosition = 1
-                    dot.position = CGPoint(x: tilesBackground[i][j].frame.midX, y: tilesBackground[i][j].frame.midY)
-                    dot.setScale(0.1)
-                    addChild(dot)
-                    let scaleUpAction = SKAction.scale(to: 1.0, duration: 0.2)
-                    let scaleDownAction = SKAction.scale(to: 0.1, duration: 0.2)
-                    let fadeOutAction = SKAction.fadeOut(withDuration: 0.2)
-                    let sequence = SKAction.sequence([scaleUpAction, scaleDownAction, fadeOutAction, SKAction.removeFromParent()])
-                    dot.run(sequence)
+    private func createDot(position: CGPoint) {
+        let dot = SKSpriteNode(imageNamed: Resources.Elements.dot)
+        dot.zPosition = 1
+        dot.position = position
+        dot.setScale(0.1)
+        addChild(dot)
+        let scaleUpAction = SKAction.scale(to: 1.0, duration: 0.2)
+        let scaleDownAction = SKAction.scale(to: 0.1, duration: 0.2)
+        let fadeOutAction = SKAction.fadeOut(withDuration: 0.2)
+        let sequence = SKAction.sequence([scaleUpAction, scaleDownAction, fadeOutAction, SKAction.removeFromParent()])
+        dot.run(sequence)
+    }
+    
+    private func isHiddenTile(i: Int, j: Int) -> Bool {
+        if level == 2 {
+            if i == 0 {
+                if j == 5 || j == 0 {
+                    return true
                 }
+            }
+            if i == 3 {
+                if j == 0 || j == 5 {
+                    return true
+                }
+            }
+        } else if level == 5 {
+            if i == 2 {
+                if j == 1 || j == 2 || j == 3 || j == 4 {
+                    return true
+                }
+            }
+            if i == 3 {
+                if j == 2 || j == 3 {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    
+    private func dotsAnimation(row: Int, col: Int) {
+        createDot(position: CGPoint(x: tilesBackground[row][col].frame.midX, y: tilesBackground[row][col].frame.midY))
+        
+        // left
+        for c in (0..<col).reversed() {
+            if isHiddenTile(i: row, j: c) {
+                continue
+            }
+            let element = tiles[row][c]
+            if element.name == nil {
+                createDot(position: CGPoint(x: tilesBackground[row][c].frame.midX, y: tilesBackground[row][c].frame.midY))
+            } else {
+                createDot(position: CGPoint(x: tilesBackground[row][c].frame.midX, y: tilesBackground[row][c].frame.midY))
+                break
+            }
+        }
+        
+        // right
+        for c in (col+1)..<colCount {
+            if isHiddenTile(i: row, j: c) {
+                continue
+            }
+            let element = tiles[row][c]
+            if element.name == nil {
+                createDot(position: CGPoint(x: tilesBackground[row][c].frame.midX, y: tilesBackground[row][c].frame.midY))
+            } else {
+                createDot(position: CGPoint(x: tilesBackground[row][c].frame.midX, y: tilesBackground[row][c].frame.midY))
+                break
+            }
+        }
+        
+        // up
+        for r in (0..<row).reversed() {
+            if isHiddenTile(i: r, j: col) {
+                continue
+            }
+            let element = tiles[r][col]
+            if element.name  == nil {
+                createDot(position: CGPoint(x: tilesBackground[r][col].frame.midX, y: tilesBackground[r][col].frame.midY))
+            } else {
+                createDot(position: CGPoint(x: tilesBackground[r][col].frame.midX, y: tilesBackground[r][col].frame.midY))
+                break
+            }
+        }
+        
+        // down
+        for r in (row+1)..<rowCount {
+            if isHiddenTile(i: r, j: col) {
+                continue
+            }
+            let element = tiles[r][col]
+            if element.name == nil {
+                createDot(position: CGPoint(x: tilesBackground[r][col].frame.midX, y: tilesBackground[r][col].frame.midY))
+            } else {
+                createDot(position: CGPoint(x: tilesBackground[r][col].frame.midX, y: tilesBackground[r][col].frame.midY))
+                break
             }
         }
     }
