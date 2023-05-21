@@ -38,6 +38,7 @@ enum Resources {
         static let refersh = "refreshButton"
         static let `continue` = "continueButton"
         static let restart = "restartButton"
+        static let tap = "tapButton"
     }
     
     enum Elements {

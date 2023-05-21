@@ -3,7 +3,9 @@ import SpriteKit
 
 class GameScene: BaseScene {
     let level: Int
+    var tapAmounts = 0
     
+    private var guideSprites = [SKSpriteNode]()
     private var levelScore = 0 {
         didSet {
             gameController.scoreAmount += levelScore - oldValue
@@ -49,11 +51,44 @@ class GameScene: BaseScene {
                         gameController.policyButtonPressed()
                     default:
                         guard let name = node.name else { return }
-                        if name.contains(Resources.Tiles.background) {
+                        if name.contains(Resources.Tiles.background) || name.contains(Resources.Buttons.tap) {
+                            tapAmounts += 1
+                            if tapAmounts == 1 && gameController.gameSetups.isGuideMode && level == 1 {
+                                guide(position: CGPoint(x: tilesBackground[0][2].frame.midX, y: tilesBackground[0][2].frame.midY), name: "02")
+                                guide(position: CGPoint(x: tilesBackground[0][2].frame.midX, y: tilesBackground[0][2].frame.midY), name: "02")
+                                guide(position: CGPoint(x: tilesBackground[1][2].frame.midX, y: tilesBackground[1][2].frame.midY), name: "12")
+                                guide(position: CGPoint(x: tilesBackground[2][2].frame.midX, y: tilesBackground[2][2].frame.midY), name: "22")
+                                guide(position: CGPoint(x: tilesBackground[2][2].frame.midX, y: tilesBackground[2][2].frame.midY), name: "22")
+                            }
                             if let name = node.name {
                                 if let (row, col) = getTilePosition(with: name) {
                                     dotsAnimation(row: row, col: col)
                                     findMatches(row: row, col: col)
+                                    if row == 0 && col == 2 && gameController.gameSetups.isGuideMode {
+                                        for i in 0..<guideSprites.count {
+                                            if guideSprites[i].name!.contains("02") {
+                                                guideSprites[i].removeFromParent()
+                                                guideSprites.remove(at: i)
+                                                break
+                                            }
+                                        }
+                                    } else if row == 1 && col == 2 {
+                                        for i in 0..<guideSprites.count {
+                                            if guideSprites[i].name!.contains("12") {
+                                                guideSprites[i].removeFromParent()
+                                                guideSprites.remove(at: i)
+                                                break
+                                            }
+                                        }
+                                    } else if row == 2 && col == 2 {
+                                        for i in 0..<guideSprites.count {
+                                            if guideSprites[i].name!.contains("22") {
+                                                guideSprites[i].removeFromParent()
+                                                guideSprites.remove(at: i)
+                                                break
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -87,6 +122,18 @@ class GameScene: BaseScene {
         setTilesBackground()
         setTitleAndSetupLevel()
         setTiles()
+        guide(position: CGPoint(x: tilesBackground[1][2].frame.midX, y: tilesBackground[1][2].frame.midY), name: "12")
+    }
+    
+    private func guide(position: CGPoint, name: String) {
+        guard gameController.gameSetups.isGuideMode, level == 1 else { return }
+        let tapButton = SKSpriteNode(imageNamed: Resources.Buttons.tap)
+        tapButton.name = Resources.Buttons.tap + name
+        tapButton.size = tilesBackground.randomElement()?.randomElement()?.size ?? CGSize()
+        tapButton.zPosition = 1
+        tapButton.position = position
+        guideSprites.append(tapButton)
+        addChild(tapButton)
     }
     
     private func createDot(position: CGPoint) {
@@ -226,7 +273,6 @@ class GameScene: BaseScene {
                 addChild(tile)
             }
         }
-
     }
     
     private func setTitleAndSetupLevel() {
@@ -340,16 +386,16 @@ class GameScene: BaseScene {
         physicsBody.friction = 0.2
         physicsBody.restitution = 0.8
         tile.physicsBody = physicsBody
-
+        
         let fadeOutAction = SKAction.fadeOut(withDuration: 0.3)
         let removeAction = SKAction.removeFromParent()
         let sequence = SKAction.sequence([fadeOutAction, removeAction])
         tile.run(sequence)
-
+        
         var force = CGVector()
         switch element.direction {
             case .right:
-                 force = CGVector(dx: 500, dy: 500)
+                force = CGVector(dx: 500, dy: 500)
             case .left:
                 force = CGVector(dx: -500, dy: 500)
             case .up:
@@ -388,7 +434,6 @@ class GameScene: BaseScene {
         switch level {
             case 1:
                 tilesBackground = Array(repeating: Array(repeating: SKSpriteNode(), count: 5), count: 3)
-                
             case 2:
                 tilesBackground = Array(repeating: Array(repeating: SKSpriteNode(), count: 6), count: 4)
             case 3:

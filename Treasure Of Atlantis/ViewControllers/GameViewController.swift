@@ -78,6 +78,9 @@ class GameViewController: UIViewController {
             winScene = WinScene(level: level, levelScore: levelScore, size: view.bounds.size, gameController: self)
             presentBaseScene(winScene)
             gameSetups.isLevelCompleted[level] = true
+            if level == 1 {
+                gameSetups.isGuideMode = false
+            }
             saveGameSetup()
         } else {
             loseScene = LoseScene(level: level, size: view.bounds.size, gameController: self)

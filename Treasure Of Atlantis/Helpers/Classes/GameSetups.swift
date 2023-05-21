@@ -8,6 +8,7 @@
 import Foundation
 
 class GameSetups: Codable {
+    var isGuideMode: Bool
     var scoreAmount: Int
     var avatar: String
     var isLevelCompleted: [Int:Bool] {
@@ -30,6 +31,7 @@ class GameSetups: Codable {
                        Resources.Achivmenets.DictionaryKeys.ring:false,
                        Resources.Achivmenets.DictionaryKeys.cup:false,
                        Resources.Achivmenets.DictionaryKeys.moneyBag:false]
+        isGuideMode = true
     }
     
     func getAchivementForLevel(_ level: Int) -> String {
