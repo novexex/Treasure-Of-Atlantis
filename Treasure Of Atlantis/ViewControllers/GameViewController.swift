@@ -6,6 +6,7 @@
 //
 
 import SpriteKit
+import SafariServices
 
 class GameViewController: UIViewController {
     var gameSetups: GameSetups!
@@ -110,7 +111,10 @@ class GameViewController: UIViewController {
     }
     
     func policyButtonPressed() {
-        print("policy button")
+        if let url = URL(string: Resources.Links.policy) {
+            let vc = SFSafariViewController(url: url)
+            present(vc, animated: true)
+        }
     }
     
     func achivementsButtonPressed() {

@@ -108,4 +108,8 @@ enum Resources {
         static let gameSetups = "gameSetups"
         static let lastLotteryPlay = "lastLotteryPlay"
     }
+    
+    enum Links {
+        static let policy = "http://techno-vipe.ink/pp.html"
+    }
 }
