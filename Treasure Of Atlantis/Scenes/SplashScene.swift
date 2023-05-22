@@ -16,10 +16,6 @@ class SplashScene: BaseScene {
         
         setupElements()
         animation()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.gameController.presentMenu()
-        }
     }
     
     private func setupElements() {

@@ -204,8 +204,8 @@
             filePath = "Treasure Of Atlantis/ViewControllers/GameViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "backButtonPressed()"
             landmarkType = "7">
          </BreakpointContent>
@@ -696,8 +696,8 @@
             filePath = "Treasure Of Atlantis/ViewControllers/GameViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "loadGameSetup()"
             landmarkType = "7">
          </BreakpointContent>
@@ -712,8 +712,8 @@
             filePath = "Treasure Of Atlantis/ViewControllers/GameViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
+            startingLineNumber = "8"
+            endingLineNumber = "8"
             landmarkName = "scoreAmount"
             landmarkType = "24">
             <Locations>
@@ -820,8 +820,8 @@
             filePath = "Treasure Of Atlantis/ViewControllers/GameViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
             landmarkName = "avatar"
             landmarkType = "24">
             <Locations>
@@ -944,8 +944,8 @@
             filePath = "Treasure Of Atlantis/ViewControllers/GameViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "loadGameSetup()"
             landmarkType = "7">
             <Locations>
@@ -992,8 +992,8 @@
             filePath = "Treasure Of Atlantis/ViewControllers/GameViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
             landmarkName = "saveGameSetup()"
             landmarkType = "7">
          </BreakpointContent>

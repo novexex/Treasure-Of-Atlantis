@@ -14,9 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var gameController: GameViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let window = UIWindow()
         self.gameController = GameViewController()
-        window.rootViewController = gameController
+        let window = UIWindow()
+        window.rootViewController = SplashViewController()
         window.makeKeyAndVisible()
         self.window = window
         return true

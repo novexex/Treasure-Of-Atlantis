@@ -1,9 +1,3 @@
-//
-//  GameViewController.swift
-//  Treasure Of Atlantis
-//
-//  Created by Artour Ilyasov on 14.05.2023.
-//
 
 import SpriteKit
 import SafariServices
@@ -33,7 +27,6 @@ class GameViewController: UIViewController {
     // MARK: Scene propertys
     private weak var prevScene: BaseScene?
     private weak var currentScene: BaseScene!
-    private lazy var splashScene = SplashScene(size: view.bounds.size, gameController: self)
     
     private lazy var menuScene = MenuScene(size: view.bounds.size, gameController: self)
     private lazy var choosingLevelScene = ChoosingLevelScene(size: view.bounds.size, gameController: self)
@@ -165,7 +158,7 @@ class GameViewController: UIViewController {
         skView.showsNodeCount = true // temp
         skView.showsFPS = true       // temp
         self.view = skView
-        currentScene = splashScene
+        currentScene = menuScene
         skView.presentScene(currentScene)
     }
     

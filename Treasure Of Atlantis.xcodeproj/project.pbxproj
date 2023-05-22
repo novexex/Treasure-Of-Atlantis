@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB36B29A2A1B53EA00309479 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB36B2992A1B53EA00309479 /* SplashViewController.swift */; };
 		EB91D0782A1073E4003DA117 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91D0772A1073E4003DA117 /* AppDelegate.swift */; };
 		EB91D07E2A1073E5003DA117 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91D07D2A1073E5003DA117 /* MenuScene.swift */; };
 		EB91D0802A1073E5003DA117 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91D07F2A1073E5003DA117 /* GameViewController.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB36B2992A1B53EA00309479 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		EB91D0742A1073E4003DA117 /* Treasure Of Atlantis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Treasure Of Atlantis.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB91D0772A1073E4003DA117 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB91D07D2A1073E5003DA117 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				EB91D07F2A1073E5003DA117 /* GameViewController.swift */,
+				EB36B2992A1B53EA00309479 /* SplashViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				EBF220D62A14F23800708A1B /* GameScene.swift in Sources */,
 				EB91D07E2A1073E5003DA117 /* MenuScene.swift in Sources */,
 				EB91D0A82A1096B0003DA117 /* GameSetups.swift in Sources */,
+				EB36B29A2A1B53EA00309479 /* SplashViewController.swift in Sources */,
 				EB91D0AC2A10AC53003DA117 /* ChoosingLevelScene.swift in Sources */,
 				EB91D0A02A108F84003DA117 /* WinScene.swift in Sources */,
 				EBF220D82A16714300708A1B /* ElementStruct.swift in Sources */,
